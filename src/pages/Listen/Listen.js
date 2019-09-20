@@ -1,10 +1,11 @@
-import React from 'react';
-import { useSelector } from 'react-redux';
+import React, { useEffect } from 'react';
+import { useSelector, useDispatch } from 'react-redux';
 import styled from 'styled-components/macro';
 import { Redirect } from 'react-router-dom';
 
 import useStations from 'components/hooks/useStations';
 import { getSelectedStation } from 'redux/tunein';
+import { startHistory, endHistory } from 'redux/history';
 import ReactPlayer from 'react-player';
 
 const Main = styled.main`
@@ -36,9 +37,20 @@ const PlayerWrap = styled.div`
 `;
 
 export default function Stations() {
+  const dispatch = useDispatch();
   // Make sure we fetch stations from api
   const stations = useStations();
   const station = useSelector(state => getSelectedStation(state));
+
+  useEffect(() => {
+    // History start
+    if (station) dispatch(startHistory(station.name));
+    return () => {
+      // History End
+      if (station) dispatch(endHistory(station.name));
+    };
+    // eslint-disable-next-line
+  }, [station]);
 
   // Render loading if not yet fetched
   if (!stations) return <div>Loading...</div>;

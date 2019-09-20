@@ -56,6 +56,9 @@ export default function Header() {
             <li>
               <Links to='/browse'>Browse</Links>
             </li>
+            <li>
+              <Links to='/history'>History</Links>
+            </li>
           </Menu>
         }
       />
