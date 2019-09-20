@@ -45,19 +45,16 @@ export default function Header() {
   return (
     <Head>
       <ResponsiveMenu
-        menuOpenButton={<i class='material-icons'>menu</i>}
-        menuCloseButton={<i class='material-icons'>clear</i>}
+        menuOpenButton={<i className='material-icons'>menu</i>}
+        menuCloseButton={<i className='material-icons'>clear</i>}
         changeMenuOn='500px'
         menu={
           <Menu>
             <li>
-              <Links to='/'>Stations</Links>
+              <Links to='/'>Top Stations</Links>
             </li>
             <li>
               <Links to='/browse'>Browse</Links>
-            </li>
-            <li>
-              <Links to='/history'>History</Links>
             </li>
           </Menu>
         }
